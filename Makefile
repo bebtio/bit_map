@@ -12,4 +12,4 @@ bit_map.c:
 .PHONY: clean
 
 clean:
-	rm *.o bit_map1
+	rm *.o bit_map
