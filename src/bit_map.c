@@ -52,7 +52,7 @@ bit_map malloc_bit_map( size_t num_bits )
 }
 
 // *********************************************************** //
-// Sets all bits to zero.
+// Free bit_map memory.
 // *********************************************************** //
 void free_bit_map( bit_map bm )
 {
@@ -79,6 +79,17 @@ void clear_bit_map( bit_map bm )
     for( size_t i = 0; i < bm->map_size; i++ )
     {
         bm->map[i] &= 0;
+    }
+}
+
+// *********************************************************** //
+// Sets all bits to one.
+// *********************************************************** //
+void set_bit_map( bit_map bm )
+{
+    for( size_t i = 0; i < bm->map_size; i++ )
+    {
+        bm->map[i] |= 0xff;
     }
 }
 

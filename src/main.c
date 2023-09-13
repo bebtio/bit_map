@@ -35,6 +35,15 @@ int main(int argc, char* argv[])
     set_bit(bm,6);
 
     print_bits(bm);
+
+    printf("Settings all bits to one.\n");
+    set_bit_map(bm);
+    print_bits(bm);
+
+    printf("Settings all bits to zero.\n");
+    clear_bit_map(bm);
+    print_bits(bm);
+    
     free_bit_map(bm);
     return(0);
 }

@@ -29,6 +29,11 @@ void free_bit_map( bit_map bm );
 void clear_bit_map( bit_map bm );
 
 // *********************************************************** //
+// Sets all bits to one.
+// *********************************************************** //
+void set_bit_map( bit_map bm );
+
+// *********************************************************** //
 // Get the bit value at index bit_index.
 // *********************************************************** //
 unsigned char get_bit( bit_map bm, size_t bit_index );
