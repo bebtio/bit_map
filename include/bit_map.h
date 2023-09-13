@@ -5,6 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum 
+{
+    OUT_OF_BOUNDS = 2,
+} BIT_MAP_ERROR;
+
 typedef struct bit_map_s* bit_map;
 
 
@@ -36,12 +41,12 @@ size_t get_num_bits( bit_map bm );
 // *********************************************************** //
 // Sets the bit at bit_index to 1.
 // *********************************************************** //
-void set_bit( bit_map bm, size_t bit_index);
+unsigned char set_bit( bit_map bm, size_t bit_index);
 
 // *********************************************************** //
 // Sets the bit at bit_index to 0.
 // *********************************************************** //
-void clear_bit( bit_map bm, size_t bit_index);
+unsigned char clear_bit( bit_map bm, size_t bit_index);
 
 // *********************************************************** //
 // Prints the contents of the bit_map.
