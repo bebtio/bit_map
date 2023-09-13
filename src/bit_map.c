@@ -25,6 +25,9 @@ typedef struct bit_map_index_s
 // Returns a bit_map_index as a pair of size_t's.
 bit_map_index get_bit_map_index( size_t bit_index );
 
+// Checks that the requested bit_index doesn't exceed the bounds of a bit_map.
+unsigned char check_bounds( bit_map bm, size_t bit_index );
+
 // *********************************************************** //
 // Will create a bit map that contains num_bits number of bits.
 // *********************************************************** //
@@ -84,6 +87,8 @@ void clear_bit_map( bit_map bm )
 // *********************************************************** //
 unsigned char get_bit( bit_map bm, size_t bit_index )
 {
+    if( check_bounds(bm, bit_index) == OUT_OF_BOUNDS ) return(OUT_OF_BOUNDS);
+
     bit_map_index bmi = get_bit_map_index(bit_index);
 
     // Get the value of the bit at bit_index.
@@ -112,25 +117,35 @@ size_t get_num_bits( bit_map bm )
 // *********************************************************** //
 // Sets the bit at bit_index to 1.
 // *********************************************************** //
-void set_bit( bit_map bm, size_t bit_index)
+unsigned char set_bit( bit_map bm, size_t bit_index)
 {
+    if( check_bounds(bm, bit_index) == OUT_OF_BOUNDS ) return(OUT_OF_BOUNDS);
+
     // Compute the map index and the bit index within that char.
     bit_map_index bmi = get_bit_map_index(bit_index);
 
     // Set that bit.
-    bm->map[ bmi.map_index ] |=  (1 << bmi.bit_index) ;
+    bm->map[ bmi.map_index ] |=  (1 << bmi.bit_index);
+
+    // Returns the value we just set.
+    return(bm->map[ bmi.map_index ]);
 }
 
 // *********************************************************** //
 // Sets the bit at bit_index to 0.
 // *********************************************************** //
-void clear_bit( bit_map bm, size_t bit_index)
+unsigned char clear_bit( bit_map bm, size_t bit_index)
 {
+    if( check_bounds(bm, bit_index) == OUT_OF_BOUNDS ) return(OUT_OF_BOUNDS);
+
     // Compute the map index and the bit index within that char.
     bit_map_index bmi = get_bit_map_index(bit_index);
 
     // And the bit with a 0.
     bm->map[ bmi.map_index ] &=  ~(1 << bmi.bit_index);
+
+    // Returns the value we just set.
+    return(bm->map[ bmi.map_index ]);
 }
 
 // *********************************************************** //
@@ -175,4 +190,14 @@ bit_map_index get_bit_map_index( size_t bit_index )
 
     return(bmidx);
 
+}
+
+unsigned char check_bounds( bit_map bm, size_t bit_index )
+{
+    if( bit_index > bm->num_bits )
+    {
+        printf("Error: bit_index of %zu is out of bounds\n", bit_index);
+        printf("       Bit map size is: %zu.\n", bm->map_size);
+        return(2);
+    }
 }
