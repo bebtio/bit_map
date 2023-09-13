@@ -211,4 +211,6 @@ unsigned char check_bounds( bit_map bm, size_t bit_index )
         printf("       Bit map size is: %zu.\n", bm->map_size);
         return(2);
     }
+
+    return(0);
 }
