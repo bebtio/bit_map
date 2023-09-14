@@ -208,7 +208,7 @@ unsigned char check_bounds( bit_map bm, size_t bit_index )
     if( bit_index > bm->num_bits )
     {
         printf("Error: bit_index of %zu is out of bounds\n", bit_index);
-        printf("       Bit map size is: %zu.\n", bm->map_size);
+        printf("       Bit map size is: %zu bits.\n", bm->map_size*BITS_IN_BYTE);
         return(2);
     }
 
