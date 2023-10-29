@@ -1,2 +1,3 @@
 *.o
 bit_map
+.vscode
